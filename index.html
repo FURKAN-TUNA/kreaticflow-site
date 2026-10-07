@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KreaticFlow — independent app &amp; game studio</title>
+<meta name="description" content="KreaticFlow is a one-person mobile app and game studio from Türkiye. Small, focused apps and puzzle games on Google Play, built with Claude Code.">
+<meta property="og:title" content="KreaticFlow">
+<meta property="og:description" content="Independent mobile app & game studio from Türkiye.">
+<meta property="og:url" content="https://kreaticflow.com/">
+<link rel="canonical" href="https://kreaticflow.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d2b26'/%3E%3Crect x='7' y='7' width='8' height='8' rx='1.5' fill='%23e8a33d'/%3E%3Crect x='17' y='7' width='8' height='8' rx='1.5' fill='%23f3ece0'/%3E%3Crect x='7' y='17' width='8' height='8' rx='1.5' fill='%23f3ece0'/%3E%3Crect x='17' y='17' width='8' height='8' rx='4' fill='%23c4573a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f1e7;
+    --card: #fffdf8;
+    --ink: #1d2b26;
+    --muted: #5d6a63;
+    --line: #e2d9c8;
+    --amber: #e8a33d;
+    --clay: #c4573a;
+    --green: #2f7a5f;
+    --chip: #ece4d4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #131a17;
+      --card: #1b2420;
+      --ink: #ede6d8;
+      --muted: #a3ada7;
+      --line: #2c3833;
+      --chip: #25302b;
+      --green: #6cc39e;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 17px/1.6 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  a { color: inherit; text-decoration-color: var(--amber); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  header.top { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; }
+  .brand { display: flex; align-items: center; gap: 12px; font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 22px; letter-spacing: -0.01em; text-decoration: none; }
+  .mark { width: 34px; height: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 3px; padding: 5px; background: var(--ink); border-radius: 8px; }
+  .mark i { display: block; border-radius: 2px; background: #f3ece0; }
+  .mark i:nth-child(1) { background: var(--amber); }
+  .mark i:nth-child(4) { background: var(--clay); border-radius: 50%; }
+  nav a { margin-left: 22px; font-size: 15px; color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--ink); }
+
+  .hero { padding: 56px 0 72px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 48px; align-items: center; }
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--clay); margin: 0 0 14px; }
+  h1 { font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: clamp(38px, 6vw, 62px); line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 22px; }
+  h1 em { font-style: normal; color: var(--green); }
+  .lede { font-size: 19px; color: var(--muted); margin: 0 0 28px; max-width: 34em; }
+  .facts { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
+  .facts li { background: var(--chip); border-radius: 999px; padding: 6px 14px; font-size: 14px; }
+  .facts b { font-weight: 600; }
+
+  .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; transform: rotate(-3deg); }
+  .board img { width: 100%; aspect-ratio: 1; border-radius: 22%; box-shadow: 0 10px 24px rgba(29, 43, 38, .18); display: block; }
+  .board img:nth-child(2n) { transform: translateY(14px); }
+
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  h2 { font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: clamp(28px, 4vw, 38px); letter-spacing: -0.01em; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 36px; max-width: 40em; }
+
+  .apps { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .app { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: start; }
+  .app img { width: 64px; height: 64px; border-radius: 15px; }
+  .app h3 { margin: 0 0 4px; font-size: 17px; font-weight: 600; line-height: 1.3; }
+  .app p { margin: 0 0 10px; font-size: 15px; color: var(--muted); }
+  .status { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+  .status.live { color: var(--green); }
+  .status.live::before { background: var(--green); }
+  .status.soon { color: var(--muted); }
+  .group-label { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+  .group-label + .apps { margin-bottom: 36px; }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; counter-reset: step; }
+  .step { counter-increment: step; }
+  .step::before { content: "0" counter(step); display: block; font-family: Fraunces, Georgia, serif; font-size: 34px; font-weight: 700; color: var(--amber); line-height: 1; margin-bottom: 12px; }
+  .step h3 { margin: 0 0 6px; font-size: 18px; font-weight: 600; }
+  .step p { margin: 0; color: var(--muted); font-size: 15.5px; }
+  .note { margin-top: 36px; padding: 18px 20px; background: var(--chip); border-radius: 14px; font-size: 15.5px; }
+
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .contact dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 20px; font-size: 15.5px; }
+  .contact dt { color: var(--muted); }
+  .contact dd { margin: 0; }
+  .policies { list-style: none; padding: 0; margin: 0; columns: 2; font-size: 15.5px; }
+  .policies li { margin-bottom: 6px; break-inside: avoid; }
+
+  footer { padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; padding-top: 24px; }
+    .board { max-width: 340px; }
+    .steps, .contact { grid-template-columns: 1fr; }
+    nav { display: none; }
+  }
+  @media (max-width: 420px) {
+    .apps { grid-template-columns: 1fr; }
+    .policies { columns: 1; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/" aria-label="KreaticFlow home"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>KreaticFlow</a>
+    <nav><a href="#apps">Apps</a><a href="#how">How we build</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Independent studio · Türkiye</p>
+        <h1>Small apps and puzzle games, <em>made with care.</em></h1>
+        <p class="lede">KreaticFlow is a one-person mobile app and game studio founded in 2026 by Furkan Tuna. We make focused, offline-first Android apps and games for Google Play, with Claude Code as our engineering team.</p>
+        <ul class="facts">
+          <li><b>3</b> apps live on Google Play</li>
+          <li><b>3</b> more on the way</li>
+          <li>Flutter · Unity</li>
+        </ul>
+      </div>
+      <div class="board" aria-hidden="true">
+        <img src="assets/apps/pikselce.png" alt="">
+        <img src="assets/apps/mangala.png" alt="">
+        <img src="assets/apps/abonetakip.png" alt="">
+        <img src="assets/apps/shogi.png" alt="">
+        <img src="assets/apps/shikaku.png" alt="">
+        <img src="assets/apps/manualcar.png" alt="">
+      </div>
+    </div>
+
+    <section id="apps">
+      <h2>Our apps</h2>
+      <p class="sub">Published on Google Play under the developer name <a href="https://play.google.com/store/apps/developer?id=Furkan+Tuna">Furkan Tuna</a>.</p>
+
+      <p class="group-label">Live on Google Play</p>
+      <div class="apps">
+        <article class="app">
+          <img src="assets/apps/pikselce.png" alt="Pikselce icon">
+          <div>
+            <h3><a href="https://play.google.com/store/apps/details?id=com.fntuna.pikselce">Pikselce: Nonogram Puzzles</a></h3>
+            <p>Pixel-art logic puzzles: fill the grid from the number clues to reveal the picture. Available in 177 countries and 11 store languages.</p>
+            <span class="status live">Live</span>
+          </div>
+        </article>
+        <article class="app">
+          <img src="assets/apps/mangala.png" alt="Mangala Ustası icon">
+          <div>
+            <h3><a href="https://play.google.com/store/apps/details?id=com.fntuna.mangala">Mangala Ustası</a></h3>
+            <p>Mangala, the traditional Turkish strategy board game, on your phone.</p>
+            <span class="status live">Live</span>
+          </div>
+        </article>
+        <article class="app">
+          <img src="assets/apps/abonetakip.png" alt="AboneTakip icon">
+          <div>
+            <h3><a href="https://play.google.com/store/apps/details?id=com.fntuna.abonetakip">AboneTakip: Subscription Tracker</a></h3>
+            <p>Tracks every subscription, its renewal date and your monthly spend, without linking a bank account. Your subscription list is stored on your device. Available in Türkiye.</p>
+            <span class="status live">Live</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="group-label">Coming soon</p>
+      <div class="apps">
+        <article class="app">
+          <img src="assets/apps/shikaku.png" alt="Shikaku icon">
+          <div>
+            <h3>Shikaku: Rectangle Puzzle</h3>
+            <p>Divide the grid into rectangles. 210 levels, each machine-checked to have exactly one solution, in 10 languages.</p>
+            <span class="status soon">Closed testing</span>
+          </div>
+        </article>
+        <article class="app">
+          <img src="assets/apps/manualcar.png" alt="Manual Car icon">
+          <div>
+            <h3>Manual Car: Stick Shift Drag</h3>
+            <p>A 3D drag race where you work the clutch and shift the gears yourself. Our first Unity and Blender game.</p>
+            <span class="status soon">Closed testing</span>
+          </div>
+        </article>
+        <article class="app">
+          <img src="assets/apps/shogi.png" alt="Shogi icon">
+          <div>
+            <h3>Shogi: Learn Japanese Chess</h3>
+            <p>Learn shogi step by step, then play.</p>
+            <span class="status soon">In preparation</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="how">
+      <h2>How we build</h2>
+      <p class="sub">The studio has one founder. Claude Code does the engineering: validation, code, tests, store listings and releases. The founder sets direction and signs off on every production release.</p>
+      <div class="steps">
+        <div class="step">
+          <h3>Validate first</h3>
+          <p>Every idea is reviewed by skeptical agents against real store data before any code is written. Most ideas are rejected at this stage.</p>
+        </div>
+        <div class="step">
+          <h3>Build with tests</h3>
+          <p>Flutter for apps, Unity and Blender for 3D games. Our apps ship with large automated test suites: more than 800 tests for Shikaku and more than 1,300 for Shogi.</p>
+        </div>
+        <div class="step">
+          <h3>Ship worldwide</h3>
+          <p>Localized store listings (Pikselce ships in 11 languages), released through the Google Play Publishing API.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact">
+        <div>
+          <h2>Contact</h2>
+          <dl>
+            <dt>Email</dt><dd><a href="mailto:furkan@kreaticflow.com">furkan@kreaticflow.com</a></dd>
+            <dt>Founder</dt><dd>Furkan Tuna</dd>
+            <dt>Based in</dt><dd>Türkiye</dd>
+            <dt>GitHub</dt><dd><a href="https://github.com/FURKAN-TUNA">FURKAN-TUNA</a></dd>
+          </dl>
+        </div>
+        <div>
+          <h2>Privacy</h2>
+          <ul class="policies">
+            <li><a href="https://furkan-tuna.github.io/abonetakip-legal/">AboneTakip</a></li>
+            <li><a href="https://furkan-tuna.github.io/abonetakip-legal/pikselce.html">Pikselce</a></li>
+            <li><a href="https://furkan-tuna.github.io/abonetakip-legal/mangala.html">Mangala Ustası</a></li>
+            <li><a href="https://furkan-tuna.github.io/abonetakip-legal/shikaku.html">Shikaku</a></li>
+            <li><a href="https://furkan-tuna.github.io/abonetakip-legal/manualcar.html">Manual Car</a></li>
+            <li><a href="https://furkan-tuna.github.io/abonetakip-legal/shogi.html">Shogi</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 KreaticFlow · Furkan Tuna</footer>
+</div>
+</body>
+</html>
